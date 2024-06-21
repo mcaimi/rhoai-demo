@@ -1,0 +1,75 @@
+---
+params:
+  url: "s3_endpoint"
+  accessKey: "accesskey"
+  secretKey: "secretkey"
+  api: "s3v4"
+  path: "auto"
+  preferDevice: "cuda"
+
+huggingface:
+  modelName: "mistralai/mistral-7B-v0.3"
+  apiToken: "apiToken"
+  hfHomePath: "/tmp/"
+  modelsPath: "model_checkpoints"
+  filenames:
+      - "model-00001-of-00003.safetensors"
+      - "model-00002-of-00003.safetensors"
+      - "model-00003-of-00003.safetensors"
+      - "model.safetensors.index.json"
+      - "config.json"
+      - "params.json"
+      - "tokenizer.model"
+      - "tokenizer.json"
+      - "tokenizer_config.json"
+      - "special_tokens_map.json"
+  modelBucket: "models"
+  modelType: "mistral"
+
+quantized_model:
+  quantizedBucket: "quantized"
+  files:
+      - "model.safetensors"
+      - "config.json"
+      - "generation_config.json"
+      - "tokenizer.model"
+      - "tokenizer.json"
+      - "tokenizer_config.json"
+      - "special_tokens_map.json"
+
+s3:
+  bucket_list:
+      - "models"
+      - "artifacts"
+      - "pipelines"
+      - "trainingdata"
+      - "onnx"
+      - "quantized"
+
+onnx:
+  target: "onnx"
+  dtype: "fp16"
+  destination: "onnx"
+
+chromadb:
+  remote: true
+  persist_dir: "/tmp"
+  host: localhost
+  port: 12345
+  collection: "redhat"
+
+training_data:
+  path: "/tmp/training_data"
+  trainingDataBucket: "trainingdata"
+  pattern: "**/*.txt"
+  chunk_size: 1000
+  chunk_overlap: 0
+
+embeddings:
+  local: False
+  sentence_transformer:
+    model: "all-MiniLM-L6-v2"
+  ollama:
+    baseurl: "http://localhost:11434"
+    model: "mistral:latest"
+
