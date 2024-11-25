@@ -73,3 +73,7 @@ embeddings:
     baseurl: "http://localhost:11434"
     model: "mistral:latest"
 
+local_inference:
+  max_tokens: 512
+  min_tokens: 20
+  temperature: 0.5
