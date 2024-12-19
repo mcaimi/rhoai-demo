@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: data-connection-minio
+  name: data-connection-minio-models
   labels:
     opendatahub.io/dashboard: "true"
     opendatahub.io/managed: "true"
   annotations:
     opendatahub.io/connection-type: s3
-    openshift.io/display-name: minio-data-connection-s3
+    openshift.io/display-name: minio-data-connection-s3-models

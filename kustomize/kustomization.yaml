@@ -1,0 +1,32 @@
+---
+namespace: rhoai-demo
+
+resources:
+  - persistent-storage.yaml
+
+secretGenerator:
+- name: data-connection-minio-models
+  literals:
+    - AWS_ACCESS_KEY_ID="your_access_key"
+    - AWS_SECRET_ACCESS_KEY="your_secret_key"
+    - AWS_DEFAULT_REGION="us"
+    - AWS_S3_ENDPOINT="http://minio-svc.minio.svc.cluster.local:9000"
+    - AWS_S3_BUCKET="models"
+- name: data-connection-minio-pipelines
+  literals:
+    - AWS_ACCESS_KEY_ID="your_access_key"
+    - AWS_SECRET_ACCESS_KEY="your_secret_key"
+    - AWS_DEFAULT_REGION="us"
+    - AWS_S3_ENDPOINT="http://minio-svc.minio.svc.cluster.local:9000"
+    - AWS_S3_BUCKET="pipelines"
+
+patches:
+  - path: data-connection-patch-models.yaml
+    target:
+      kind: Secret
+  - path: data-connection-patch-pipelines.yaml
+    target:
+      kind: Secret
+  - path: pvc-patch.yaml
+    target:
+      kind: PersistentVolumeClaim
